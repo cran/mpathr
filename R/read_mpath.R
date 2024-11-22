@@ -9,8 +9,8 @@
   date_names = "en",
   date_format = "%AD",
   time_format = "%AT",
-  decimal_mark = ",",
-  grouping_mark = ".",
+  decimal_mark = ".",
+  grouping_mark = "",
   tz = "UTC",
   encoding = "UTF-8",
   asciify = FALSE
@@ -89,8 +89,18 @@ read_mpath <- function(
     type = cols_not_in_metadata
   )
 
-  # Get the column names in the data file
-  col_names <- strsplit(col_names, ";")[[1]]
+  # Get the column names in the data file using a csv parser, as column names may also
+  # have escaping (e.g. quotes in column names)
+  col_names <- suppressWarnings(readr::read_delim(
+    file = file,
+    delim = ";",
+    n_max = 0, # Get only the headers
+    locale = .mpath_locale,
+    show_col_types = FALSE,
+    na = "",
+    col_names = TRUE
+  ))
+  col_names <- colnames(col_names)
 
   # Get the type of each column in file to specify column types in readr::read_delim
   type_char <- meta_data |>
@@ -111,6 +121,7 @@ read_mpath <- function(
     locale = .mpath_locale,
     show_col_types = FALSE,
     na = "",
+    guess_max = Inf,
     col_names = TRUE,
     col_types = paste0(type_char$type, collapse = "")
   ))

@@ -32,6 +32,16 @@ test_that(".to_int_list works correctly", {
   expect_identical(output[[4]], NA_integer_)
 })
 
+test_that(".to_int_list can handle vectors of NA", {
+  input <- rep(NA, 5)
+  output <- .to_int_list(input)
+
+  expect_type(output, "list")
+  expect_equal(length(output), 5)
+  expect_identical(output, as.list(rep(NA_integer_, 5)))
+
+})
+
 test_that(".to_int_list handles integer overflow correctly", {
   input <- c("1,2,3", "4,5", "6", "2147483647,2147483648", NA)
   output <- .to_int_list(input)
@@ -55,6 +65,15 @@ test_that(".to_double_list works correctly", {
   expect_equal(output[[2]], as.double(c(4.4, 5.5)))
   expect_equal(output[[3]], 6.6)
   expect_equal(output[[4]], NA_real_)
+})
+
+test_that(".to_double_list can handle vectors of NA", {
+  input <- rep(NA, 5)
+  output <- .to_double_list(input)
+
+  expect_type(output, "list")
+  expect_equal(length(output), 5)
+  expect_identical(output, as.list(rep(NA_real_, 5)))
 })
 
 test_that(".to_string works correctly", {
@@ -112,6 +131,18 @@ test_that(".to_string can handle numbers that start with 0 without returning the
 test_that(".to_string_list with JSON-like input works correctly", {
   input <- c("\"neck\"", "\"right leg\"", "\"left hand\", \"right hand\"", NA)
   output <- .to_string_list(input)
+
+  expect_type(output, "list")
+  expect_equal(length(output), 4)
+  expect_equal(output[[1]], "neck")
+  expect_equal(output[[2]], "right leg")
+  expect_equal(output[[3]], c("left hand", "right hand"))
+  expect_equal(output[[4]], NA_character_)
+})
+
+test_that(".to_string falls back to .to_string_list if it detects a list structure", {
+  input <- c("\"neck\"", "\"right leg\"", "\"left hand\", \"right hand\"", NA)
+  output <- .to_string(input)
 
   expect_type(output, "list")
   expect_equal(length(output), 4)
