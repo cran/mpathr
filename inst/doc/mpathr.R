@@ -24,24 +24,24 @@ data <- read_mpath(
 data
 
 ## ----write data as csv, eval = FALSE------------------------------------------
-#  write_mpath(
-#    x = data,
-#    file = "data.csv"
-#  )
+# write_mpath(
+#   x = data,
+#   file = "data.csv"
+# )
 
 ## ----write data as an R object, eval = FALSE----------------------------------
-#  # As an .RData file. When using `load()`, note that the data will be stored in the `data` object
-#  # in the global environment.
-#  save(
-#    data,
-#    file = 'data.RData'
-#  )
-#  
-#  # As an RDS file.
-#  saveRDS(
-#    data,
-#    file = 'data.RDS'
-#  )
+# # As an .RData file. When using `load()`, note that the data will be stored in the `data` object
+# # in the global environment.
+# save(
+#   data,
+#   file = 'data.RData'
+# )
+# 
+# # As an RDS file.
+# saveRDS(
+#   data,
+#   file = 'data.RDS'
+# )
 
 ## ----calculate response rate--------------------------------------------------
 example_data
