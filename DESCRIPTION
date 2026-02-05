@@ -1,6 +1,6 @@
 Package: mpathr
 Title: Easily Handling Data from the ‘m-Path’ Platform
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: c(
     person("Merijn", "Mestdagh", , "merijn.mestdagh@m-path.io", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5077-861X")),
@@ -28,9 +28,9 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2025-05-15 12:22:22 UTC; u0134047
+Packaged: 2026-02-05 10:58:55 UTC; u0134047
 Author: Merijn Mestdagh [aut, cre] (ORCID:
     <https://orcid.org/0000-0001-5077-861X>),
   Lara Navarrete [aut],
@@ -38,4 +38,4 @@ Author: Merijn Mestdagh [aut, cre] (ORCID:
   m-Path Software [cph]
 Maintainer: Merijn Mestdagh <merijn.mestdagh@m-path.io>
 Repository: CRAN
-Date/Publication: 2025-05-15 13:10:02 UTC
+Date/Publication: 2026-02-05 11:40:02 UTC
